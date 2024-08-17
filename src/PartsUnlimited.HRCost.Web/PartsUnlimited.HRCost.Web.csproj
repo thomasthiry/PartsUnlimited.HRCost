@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PartsUnlimited.HRCost.Application\PartsUnlimited.HRCost.Application.csproj" />
+    <ProjectReference Include="..\PartsUnlimited.HRCost.Domain\PartsUnlimited.HRCost.Domain.csproj" />
+    <ProjectReference Include="..\PartsUnlimited.HRCost.Infrastructure\PartsUnlimited.HRCost.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
