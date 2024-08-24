@@ -10,8 +10,7 @@ public class EmployeeCostTests
     [Fact]
     public void The_details_of_an_employee_can_be_viewed()
     {
-        var context = AnApp().Build();
-        context.EmployeeRepositoryMock.Add(new Employee { Id = 1, LastName = "Poelvoorde"});
+        var context = AnApp().With(new Employee { Id = 1, LastName = "Poelvoorde" }).Build();
 
         var employee = context.EmployeeController.Edit(1).ConvertTo<EmployeeViewModel>();
 

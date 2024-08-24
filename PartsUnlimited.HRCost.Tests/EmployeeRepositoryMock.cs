@@ -22,8 +22,8 @@ public class EmployeeRepositoryMock : IEmployeeRepository
         throw new NotImplementedException();
     }
 
-    public void Add(Employee employee)
+    public void Add(IEnumerable<Employee> employee)
     {
-        _employees.Add(employee);
+        _employees.AddRange(employee);
     }
 }
