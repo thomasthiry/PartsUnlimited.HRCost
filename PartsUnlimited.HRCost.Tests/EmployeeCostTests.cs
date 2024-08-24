@@ -2,6 +2,7 @@ using NFluent;
 using PartsUnlimited.HRCost.Domain.Entities;
 using PartsUnlimited.HRCost.Web.ViewModels;
 using static PartsUnlimited.HRCost.Tests.AppBuilder;
+using static PartsUnlimited.HRCost.Tests.EmployeeBuilder;
 
 namespace PartsUnlimited.HRCost.Tests;
 
@@ -10,11 +11,11 @@ public class EmployeeCostTests
     [Fact]
     public void The_details_of_an_employee_can_be_viewed()
     {
-        var context = AnApp().With(new Employee { Id = 1, LastName = "Poelvoorde" }).Build();
+        var employee = AnEmployee().Build();
+        var context = AnApp().With(employee).Build();
 
-        var employee = context.EmployeeController.Edit(1).ConvertTo<EmployeeViewModel>();
+        var retrievedEmployee = context.EmployeeController.Edit(employee.Id).ConvertTo<EmployeeViewModel>();
 
-        Check.That(employee.Id).Is(1);
-        Check.That(employee.LastName).Is("Poelvoorde");
+        Check.That(retrievedEmployee.LastName).Is(employee.LastName);
     }
 }
