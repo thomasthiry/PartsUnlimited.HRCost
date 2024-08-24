@@ -1,60 +1,21 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.DependencyInjection;
-using PartsUnlimited.HRCost.Web;
+using NFluent;
+using PartsUnlimited.HRCost.Domain.Entities;
+using PartsUnlimited.HRCost.Web.ViewModels;
+using static PartsUnlimited.HRCost.Tests.AppBuilder;
 
 namespace PartsUnlimited.HRCost.Tests;
 
 public class EmployeeCostTests
 {
     [Fact]
-    public async Task Yearly_cost_is_12_times_monthly_gross_salary()
+    public void The_details_of_an_employee_can_be_viewed()
     {
-        var context = AppBuilder.AnApp().Build();
-        
-        // useful to test aspnet configuration
-        var response = await context.Client.GetAsync("/WeatherForecast/Brussels");
-    }
-}
+        var context = AnApp().Build();
+        context.EmployeeRepositoryMock.Add(new Employee { Id = 1, LastName = "Poelvoorde"});
 
-public class AppBuilder
-{
-    public static AppBuilder AnApp()
-    {
-        return new AppBuilder();
-    }
+        var employee = context.EmployeeController.Edit(1).ConvertTo<EmployeeViewModel>();
 
-    public TestingAppContext Build()
-    {
-        var factory = new WebApplicationFactoryOverridingDependencies();
-        // var factory = new WebApplicationFactoryOverridingDependencies(services =>
-        //     services.AddTransient<ITemperatures>(_ =>
-        //     {
-        //         return _temperaturesMock;
-        //     }));
-        return new TestingAppContext
-        {
-            Client = factory.CreateClient()
-        };
-    }
-}
-
-public class TestingAppContext
-{
-    public HttpClient Client { get; set; }
-}
-
-public class WebApplicationFactoryOverridingDependencies : WebApplicationFactory<Program>
-{
-    private readonly Action<IServiceCollection>? _overrideDependencies;
-
-    public WebApplicationFactoryOverridingDependencies(Action<IServiceCollection>? overrideDependencies = null)
-    {
-        _overrideDependencies = overrideDependencies;
-    }
-
-    protected override void ConfigureWebHost(IWebHostBuilder builder)
-    {
-        builder.ConfigureServices(services => _overrideDependencies?.Invoke(services));
+        Check.That(employee.Id).Is(1);
+        Check.That(employee.LastName).Is("Poelvoorde");
     }
 }
