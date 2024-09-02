@@ -1,4 +1,5 @@
-﻿using PartsUnlimited.HRCost.Domain.Entities;
+﻿using PartsUnlimited.HRCost.Domain;
+using PartsUnlimited.HRCost.Domain.Entities;
 
 namespace PartsUnlimited.HRCost.Tests;
 
@@ -6,6 +7,7 @@ public class EmployeeBuilder
 {
     private int _id = 1;
     private string _lastName = "Cage";
+    private decimal _monthlyGrossSalary;
 
     public static EmployeeBuilder AnEmployee()
     {
@@ -14,7 +16,7 @@ public class EmployeeBuilder
 
     public Employee Build()
     {
-        return new Employee { Id = _id, LastName = _lastName };
+        return new Employee { Id = _id, LastName = _lastName, MonthlyGrossSalary = _monthlyGrossSalary };
     }
 
     public EmployeeBuilder WithId(int id)
@@ -26,6 +28,13 @@ public class EmployeeBuilder
     public EmployeeBuilder WithLastName(string lastName)
     {
         _lastName = lastName;
+        return this;
+    }
+
+
+    public EmployeeBuilder WithMonthlyGrossSalary(int salary)
+    {
+        _monthlyGrossSalary = salary;
         return this;
     }
 }

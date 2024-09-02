@@ -20,9 +20,10 @@ namespace PartsUnlimited.HRCost.Web.Controllers
                 AddressPostalCode = employee.AddressPostalCode,
                 AddressCountry = employee.AddressCountry,
                 JoinedCompanyDate = employee.JoinedCompanyDate,
-                GrossMonthlySalary = employee.GrossMonthlySalary,
+                MonthlyGrossSalary = employee.MonthlyGrossSalary,
                 IsGrantedCar = employee.IsGrantedCar,
                 NbDaysYearlyHolidays = employee.NbDaysYearlyHolidays,
+                YearlyGrossSalaryCost = employee.YearlyGrossSalaryCost
             };
         }
 
@@ -41,7 +42,7 @@ namespace PartsUnlimited.HRCost.Web.Controllers
                 AddressPostalCode = employee.AddressPostalCode,
                 AddressCountry = employee.AddressCountry,
                 JoinedCompanyDate = employee.JoinedCompanyDate,
-                GrossMonthlySalary = employee.GrossMonthlySalary,
+                MonthlyGrossSalary = employee.MonthlyGrossSalary,
                 IsGrantedCar = employee.IsGrantedCar,
                 NbDaysYearlyHolidays = employee.NbDaysYearlyHolidays,
             };

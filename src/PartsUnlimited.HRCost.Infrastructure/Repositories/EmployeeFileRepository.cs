@@ -39,7 +39,7 @@ namespace PartsUnlimited.HRCost.Infrastructure.Repositories
             employeeFromDb.AddressPostalCode = employee.AddressPostalCode;
             employeeFromDb.AddressCountry = employee.AddressCountry;
             employeeFromDb.JoinedCompanyDate = employee.JoinedCompanyDate;
-            employeeFromDb.GrossMonthlySalary = employee.GrossMonthlySalary;
+            employeeFromDb.MonthlyGrossSalary = employee.MonthlyGrossSalary;
             employeeFromDb.IsGrantedCar = employee.IsGrantedCar;
             employeeFromDb.NbDaysYearlyHolidays = employee.NbDaysYearlyHolidays;
 

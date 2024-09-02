@@ -1,5 +1,4 @@
 using NFluent;
-using PartsUnlimited.HRCost.Domain.Entities;
 using PartsUnlimited.HRCost.Web.ViewModels;
 using static PartsUnlimited.HRCost.Tests.AppBuilder;
 using static PartsUnlimited.HRCost.Tests.EmployeeBuilder;
@@ -18,4 +17,31 @@ public class EmployeeCostTests
 
         Check.That(retrievedEmployee.LastName).Is(employee.LastName);
     }
+    
+    [Fact]
+    public void The_yearly_cost_of_an_employee_is_12_times_the_monthly_cost()
+    {
+        var employee = AnEmployee().WithMonthlyGrossSalary(3000).Build();
+        var app = AnApp().With(employee).Build();
+
+        var retrievedEmployee = app.EmployeeController.Edit(employee.Id).ConvertTo<EmployeeViewModel>();
+
+        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(12 * employee.MonthlyGrossSalary);
+    }
+    
+    
+    // The_minimum_cost_of_an_employee_is_gross_salary_plus_13th_month_and_vacation_double_premium
+    
+    // The_yearly_gross_salary_includes_double_premiums_and_end_of_year_premium
+    // The_employer_tax_is_30_percent_of_the_gross_salary
+    
+    
+
+    // bonus
+    // chèques repas
+    // assurance groupe
+    // frais de représentation
+    // abonnement gsm
+    // voiture de société
+    // monthly cost = 1/12 of the yearly cost
 }
