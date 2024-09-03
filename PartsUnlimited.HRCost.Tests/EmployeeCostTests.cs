@@ -13,7 +13,7 @@ public class EmployeeCostTests
         var employee = AnEmployee().Build();
         var context = AnApp().With(employee).Build();
 
-        var retrievedEmployee = context.EmployeeController.Edit(employee.Id).ConvertTo<EmployeeViewModel>();
+        var retrievedEmployee = context.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
         Check.That(retrievedEmployee.LastName).Is(employee.LastName);
     }
@@ -24,7 +24,7 @@ public class EmployeeCostTests
         var employee = AnEmployee().WithMonthlyGrossSalary(3000m).Build();
         var app = AnApp().With(employee).Build();
 
-        var retrievedEmployee = app.EmployeeController.Edit(employee.Id).ConvertTo<EmployeeViewModel>();
+        var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
         Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(36000m);
     }
@@ -39,7 +39,7 @@ public class EmployeeCostTests
             .Build();
         var app = AnApp().With(employee).Build();
 
-        var retrievedEmployee = app.EmployeeController.Edit(employee.Id).ConvertTo<EmployeeViewModel>();
+        var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
         Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(38760m);
     }
