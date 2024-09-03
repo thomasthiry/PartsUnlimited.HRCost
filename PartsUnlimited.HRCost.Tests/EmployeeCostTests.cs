@@ -30,7 +30,6 @@ public class EmployeeCostTests
     }
     
     [Fact]
-    // public void The_yearly_gross_salary_includes_double_premiums_and_end_of_year_premium()
     public void The_double_holiday_premium_adds_92_percent_of_the_monthly_gross_salary_to_the_year()
     {
         var employee = AnEmployee()
@@ -42,6 +41,20 @@ public class EmployeeCostTests
         var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
         Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(38760m);
+    }
+
+    [Fact]
+    public void The_end_of_year_premium_adds_1_time_the_monthly_gross_salary_to_the_year()
+    {
+        var employee = AnEmployee()
+            .WithMonthlyGrossSalary(3000m)
+            .WithEndOfYearPremium()
+            .Build();
+        var app = AnApp().With(employee).Build();
+
+        var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
+
+        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(39000m);
     }
 
     // [Fact]

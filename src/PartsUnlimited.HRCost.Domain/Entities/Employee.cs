@@ -18,7 +18,10 @@ namespace PartsUnlimited.HRCost.Domain.Entities
         public decimal MonthlyGrossSalary { get; set; }
         public bool IsGrantedCar { get; set; }
         public int NbDaysYearlyHolidays { get; set; }
-        public decimal YearlyGrossSalaryCost => 12 * MonthlyGrossSalary + (HasDoubleHolidayPremium ? 0.92m * MonthlyGrossSalary : 0m );
+        public decimal YearlyGrossSalaryCost => 
+            12 * MonthlyGrossSalary 
+            + (HasDoubleHolidayPremium ? 0.92m * MonthlyGrossSalary : 0m )
+            + (HasEndOfYearPremium ? MonthlyGrossSalary : 0m );
         public bool HasDoubleHolidayPremium { get; set; }
         public bool HasEndOfYearPremium { get; set; }
     }
