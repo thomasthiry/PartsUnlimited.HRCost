@@ -44,7 +44,7 @@ public class EmployeeCostTests
     }
 
     [Fact]
-    public void The_end_of_year_premium_adds_1_time_the_monthly_gross_salary_to_the_year()
+    public void The_end_of_year_premium_adds_1_time_the_monthly_gross_salary_to_the_yearly_gross_salary()
     {
         var employee = AnEmployee()
             .WithMonthlyGrossSalary(3000m)
@@ -57,21 +57,35 @@ public class EmployeeCostTests
         Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(39000m);
     }
 
-    // [Fact]
-    // public void The_yearly_cost_of_an_employee_includes_the_yearly_gross_salary()
-    // {
-    //     var employee = AnEmployee().WithMonthlyGrossSalary(3000).Build();
-    //     var app = AnApp().With(employee).Build();
-    //
-    //     var retrievedEmployee = app.EmployeeController.Edit(employee.Id).ConvertTo<EmployeeViewModel>();
-    //
-    //     Check.That(retrievedEmployee.TotalYearlyCost).Is(employee.YearlyGrossSalaryCost);
-    // }
+    [Fact]
+    public void The_employer_tax_is_30_percent_of_the_gross_salary()
+    {
+        var employee = AnEmployee()
+            .WithMonthlyGrossSalary(1000m)
+            .Build();
+        var app = AnApp().With(employee).Build();
+
+        var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
+
+        Check.That(retrievedEmployee.YearlyEmployerTax).Is(3600m); // 12 * 1000 * 30 %
+    }
+
+    [Fact]
+    public void The_employer_tax_applies_to_premiums_as_well()
+    {
+        var employee = AnEmployee()
+            .WithMonthlyGrossSalary(1000m)
+            .WithEndOfYearPremium()
+            .Build();
+        var app = AnApp().With(employee).Build();
+
+        var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
+
+        Check.That(retrievedEmployee.YearlyEmployerTax).Is(3900m); // 13 * 1000 * 30 %
+    }
+
     
-    
-    // The_minimum_cost_of_an_employee_is_gross_salary_plus_13th_month_and_vacation_double_premium
-    
-    // The_yearly_gross_salary_includes_double_premiums_and_end_of_year_premium
+
     // The_employer_tax_is_30_percent_of_the_gross_salary
     
     

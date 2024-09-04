@@ -22,5 +22,6 @@ namespace PartsUnlimited.HRCost.Web.ViewModels
         public bool IsGrantedCar { get; set; }
         public int NbDaysYearlyHolidays { get; set; }
         public decimal YearlyGrossSalaryCost { get; set; }
+        public decimal YearlyEmployerTax { get; set; }
     }
 }

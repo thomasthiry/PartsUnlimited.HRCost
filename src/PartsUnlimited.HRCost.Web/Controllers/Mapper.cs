@@ -23,7 +23,8 @@ namespace PartsUnlimited.HRCost.Web.Controllers
                 MonthlyGrossSalary = employee.MonthlyGrossSalary,
                 IsGrantedCar = employee.IsGrantedCar,
                 NbDaysYearlyHolidays = employee.NbDaysYearlyHolidays,
-                YearlyGrossSalaryCost = employee.YearlyGrossSalaryCost
+                YearlyGrossSalaryCost = employee.YearlyGrossSalaryCost,
+                YearlyEmployerTax = employee.YearlyEmployerTax
             };
         }
 

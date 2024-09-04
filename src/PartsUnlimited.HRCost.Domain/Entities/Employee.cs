@@ -24,5 +24,6 @@ namespace PartsUnlimited.HRCost.Domain.Entities
             + (HasEndOfYearPremium ? MonthlyGrossSalary : 0m );
         public bool HasDoubleHolidayPremium { get; set; }
         public bool HasEndOfYearPremium { get; set; }
+        public decimal YearlyEmployerTax => YearlyGrossSalaryCost * 0.3m;
     }
 }
