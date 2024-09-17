@@ -4,6 +4,12 @@ namespace PartsUnlimited.HRCost.Domain.Entities
 {
     public class Employee
     {
+        public Employee(string firstName, string lastName)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+        }
+
         public int Id { get; set; }
         public int Reference { get; set; }
         public string FirstName { get; set; }

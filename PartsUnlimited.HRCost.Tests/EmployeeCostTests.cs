@@ -84,12 +84,6 @@ public class EmployeeCostTests
         Check.That(retrievedEmployee.YearlyEmployerTax).Is(3900m); // 13 * 1000 * 30 %
     }
 
-    
-
-    // The_employer_tax_is_30_percent_of_the_gross_salary
-    
-    
-
     // bonus
     // chèques repas
     // assurance groupe

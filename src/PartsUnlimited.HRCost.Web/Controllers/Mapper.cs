@@ -30,11 +30,9 @@ namespace PartsUnlimited.HRCost.Web.Controllers
 
         public static Employee Map(EmployeeViewModel employee)
         {
-            return new Employee
+            return new Employee(employee.FirstName, employee.LastName)
             {
                 Id = employee.Id,
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
                 Reference = employee.Reference,
                 DateOfBirth = employee.DateOfBirth,
                 AddressNumber = employee.AddressNumber,

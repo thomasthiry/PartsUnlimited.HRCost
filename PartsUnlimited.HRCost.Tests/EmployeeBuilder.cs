@@ -1,11 +1,11 @@
-﻿using PartsUnlimited.HRCost.Domain;
-using PartsUnlimited.HRCost.Domain.Entities;
+﻿using PartsUnlimited.HRCost.Domain.Entities;
 
 namespace PartsUnlimited.HRCost.Tests;
 
 public class EmployeeBuilder
 {
     private int _id = 1;
+    private string _firstName = "Nicolas";
     private string _lastName = "Cage";
     private decimal _monthlyGrossSalary;
     private bool _hasDoubleHolidayPremium;
@@ -18,9 +18,8 @@ public class EmployeeBuilder
 
     public Employee Build()
     {
-        return new Employee { 
+        return new Employee(_firstName, _lastName) { 
             Id = _id, 
-            LastName = _lastName, 
             MonthlyGrossSalary = _monthlyGrossSalary,
             HasDoubleHolidayPremium = _hasDoubleHolidayPremium,
             HasEndOfYearPremium = _hasEndOfYearPremium
