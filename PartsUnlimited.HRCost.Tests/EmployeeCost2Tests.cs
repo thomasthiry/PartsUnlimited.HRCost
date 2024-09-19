@@ -32,6 +32,6 @@ public class EmployeeCost2Tests
 
         var retrievedEmployee = controller.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(36000); // 12 * 3000
+        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(36000m); // 12 * 3000
     }
 }

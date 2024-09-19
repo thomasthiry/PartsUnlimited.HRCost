@@ -24,7 +24,8 @@ namespace PartsUnlimited.HRCost.Web.Controllers
                 IsGrantedCar = employee.IsGrantedCar,
                 NbDaysYearlyHolidays = employee.NbDaysYearlyHolidays,
                 YearlyGrossSalaryCost = employee.YearlyGrossSalaryCost,
-                YearlyEmployerTax = employee.YearlyEmployerTax
+                YearlyEmployerTax = employee.YearlyEmployerTax,
+                CellPhonePlanCost = employee.CellPhonePlanCost
             };
         }
 

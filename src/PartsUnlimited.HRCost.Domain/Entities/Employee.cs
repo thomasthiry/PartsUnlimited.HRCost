@@ -31,5 +31,7 @@ namespace PartsUnlimited.HRCost.Domain.Entities
         public bool HasDoubleHolidayPremium { get; set; }
         public bool HasEndOfYearPremium { get; set; }
         public decimal YearlyEmployerTax => YearlyGrossSalaryCost * 0.3m;
+        public bool HasCellPhonePlan { get; set; }
+        public decimal CellPhonePlanCost => HasCellPhonePlan ? 12 * 50m : 0m;
     }
 }

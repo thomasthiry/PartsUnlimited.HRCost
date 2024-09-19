@@ -10,6 +10,7 @@ public class EmployeeBuilder
     private decimal _monthlyGrossSalary;
     private bool _hasDoubleHolidayPremium;
     private bool _hasEndOfYearPremium;
+    private bool _hasCellPhonePlan;
 
     public static EmployeeBuilder AnEmployee()
     {
@@ -22,7 +23,8 @@ public class EmployeeBuilder
             Id = _id, 
             MonthlyGrossSalary = _monthlyGrossSalary,
             HasDoubleHolidayPremium = _hasDoubleHolidayPremium,
-            HasEndOfYearPremium = _hasEndOfYearPremium
+            HasEndOfYearPremium = _hasEndOfYearPremium,
+            HasCellPhonePlan = _hasCellPhonePlan
         };
     }
 
@@ -54,6 +56,12 @@ public class EmployeeBuilder
     public EmployeeBuilder WithEndOfYearPremium()
     {
         _hasEndOfYearPremium = true;
+        return this;
+    }
+
+    public EmployeeBuilder WithCellPhonePlan()
+    {
+        _hasCellPhonePlan = true;
         return this;
     }
 }

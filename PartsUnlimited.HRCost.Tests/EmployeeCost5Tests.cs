@@ -5,14 +5,14 @@ using static PartsUnlimited.HRCost.Tests.EmployeeBuilder;
 
 namespace PartsUnlimited.HRCost.Tests;
 
-public class EmployeeCostTests
+public class EmployeeCost5Tests
 {
     [Fact]
     public void The_details_of_an_employee_can_be_viewed()
     {
         var employee = AnEmployee().Build();
         var context = AnApp().With(employee).Build();
-
+        
         var retrievedEmployee = context.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
         Check.That(retrievedEmployee.LastName).Is(employee.LastName);
@@ -26,7 +26,7 @@ public class EmployeeCostTests
 
         var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(36000m);
+        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(36000m); // 12 * 3000
     }
     
     [Fact]
@@ -82,6 +82,28 @@ public class EmployeeCostTests
         var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
         Check.That(retrievedEmployee.YearlyEmployerTax).Is(3900m); // 13 * 1000 * 30 %
+    }
+
+    [Fact]
+    public void Cell_phone_plan_adds_a_monthly_fee()
+    {
+        var employee = AnEmployee().WithCellPhonePlan().Build();
+        var app = AnApp().With(employee).Build();
+
+        var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
+
+        Check.That(retrievedEmployee.CellPhonePlanCost).Is(600m);
+    }
+
+    [Fact]
+    public void Not_everyone_has_a_cell_phone_plan()
+    {
+        var employee = AnEmployee().Build();
+        var app = AnApp().With(employee).Build();
+
+        var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
+
+        Check.That(retrievedEmployee.CellPhonePlanCost).Is(0m);
     }
 
     // bonus

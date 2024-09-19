@@ -23,5 +23,6 @@ namespace PartsUnlimited.HRCost.Web.ViewModels
         public int NbDaysYearlyHolidays { get; set; }
         public decimal YearlyGrossSalaryCost { get; set; }
         public decimal YearlyEmployerTax { get; set; }
+        public decimal CellPhonePlanCost { get; set; }
     }
 }
