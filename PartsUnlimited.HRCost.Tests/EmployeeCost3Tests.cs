@@ -19,7 +19,7 @@ public class EmployeeCost3Tests
     }
     
     [Fact]
-    public void The_yearly_gross_salary_of_an_employee_is_12_times_the_monthly_gross_salary()
+    public void The_yearly_gross_salary_cost_of_an_employee_is_12_times_the_monthly_gross_salary()
     {
         var employee = AnEmployee().WithMonthlyGrossSalary(3000m).Build();
         var app = AnApp().With(employee).Build();

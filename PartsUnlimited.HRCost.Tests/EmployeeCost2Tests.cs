@@ -22,7 +22,7 @@ public class EmployeeCost2Tests
     }
     
     [Fact]
-    public void The_yearly_gross_salary_of_an_employee_is_12_times_the_monthly_gross_salary()
+    public void The_yearly_gross_salary_cost_of_an_employee_is_12_times_the_monthly_gross_salary()
     {
         var employee = new Employee("Benoît", "Poelvoorde");
         employee.MonthlyGrossSalary = 3000m;
