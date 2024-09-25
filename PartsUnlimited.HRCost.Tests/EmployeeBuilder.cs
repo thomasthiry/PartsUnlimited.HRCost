@@ -19,7 +19,7 @@ public class EmployeeBuilder
 
     public Employee Build()
     {
-        return new Employee(_firstName, _lastName) { 
+        return new Employee(_firstName, _lastName) {
             Id = _id, 
             MonthlyGrossSalary = _monthlyGrossSalary,
             HasDoubleHolidayPremium = _hasDoubleHolidayPremium,

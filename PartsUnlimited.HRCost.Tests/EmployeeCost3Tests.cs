@@ -10,7 +10,7 @@ public class EmployeeCost3Tests
     [Fact]
     public void The_details_of_an_employee_can_be_viewed()
     {
-        var employee = AnEmployee().Build();
+        var employee = AnEmployee().Build(); // Desiderata: Readable
         var context = AnApp().With(employee).Build();
         
         var retrievedEmployee = context.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();

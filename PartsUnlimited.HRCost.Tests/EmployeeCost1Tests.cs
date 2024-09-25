@@ -9,10 +9,10 @@ namespace PartsUnlimited.HRCost.Tests;
 public class EmployeeCost1Tests
 {
     [Fact]
-    public void The_details_of_an_employee_can_be_viewed()
+    public void The_details_of_an_employee_can_be_viewed() // Desiderata: Readable
     {
-        var employee = new Employee("Benoît", "Poelvoorde");
-        var employeeRepositoryMock = new EmployeeRepositoryMock();
+        var employee = new Employee("Benoît", "Poelvoorde"); // Desiderata: Independant
+        var employeeRepositoryMock = new EmployeeRepositoryMock(); // Desiderata: Deterministic (hexagonal architecture - no library)
         employeeRepositoryMock.Add(new[] { employee });
         var controller = new EmployeeController(new EmployeeService(employeeRepositoryMock));
         
