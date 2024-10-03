@@ -26,7 +26,7 @@ public class EmployeeCost4Tests
 
         var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(36000m); // 12 * 3000
+        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(36000m); // 12 * 3000 = 36000
     }
     
     [Fact]
@@ -67,7 +67,7 @@ public class EmployeeCost4Tests
 
         var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.YearlyEmployerTax).Is(3600m); // 12 * 1000 * 30 %
+        Check.That(retrievedEmployee.YearlyEmployerTax).Is(3600m); // 12 * 1000 * 30 % = 3600
     }
 
     [Fact]
@@ -81,16 +81,6 @@ public class EmployeeCost4Tests
 
         var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.YearlyEmployerTax).Is(3900m); // 13 * 1000 * 30 %
+        Check.That(retrievedEmployee.YearlyEmployerTax).Is(3900m); // 13 * 1000 * 30 % = 3900
     }
-
-    // bonus
-    // chèques repas
-    // assurance groupe
-    // frais de représentation
-    // abonnement gsm
-    // voiture de société
-    
-    // total cost = sum of all other costs
-    // monthly cost = 1/12 of the yearly cost
 }

@@ -18,7 +18,7 @@ namespace PartsUnlimited.HRCost.Web
             }
             if (context.ActionDescriptor.ControllerTypeInfo == typeof(EmployeeController))
             {
-                return new EmployeeController(new EmployeeService(new EmployeeFileRepository("employees.json")));
+                return new EmployeeController(new EmployeeService(new EmployeeRepository(new SqlConnectionFactory("Server=localhost;Database=PARTS_UNLIMITED_HR_COSTS;User Id=sa;Password=Evolve11!;"))));
             }
  
             return null;
@@ -28,4 +28,5 @@ namespace PartsUnlimited.HRCost.Web
         {
             
         }
-    }}
+    }
+}

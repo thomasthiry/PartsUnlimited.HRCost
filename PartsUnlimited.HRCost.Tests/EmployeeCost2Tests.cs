@@ -25,13 +25,13 @@ public class EmployeeCost2Tests
     public void The_yearly_gross_salary_cost_of_an_employee_is_12_times_the_monthly_gross_salary()
     {
         var employee = new Employee("Benoît", "Poelvoorde");
-        employee.MonthlyGrossSalary = 3000m;
+        employee.MonthlyGrossSalary = 3000m; // Not in the title
         var employeeRepositoryMock = new EmployeeRepositoryMock();
         employeeRepositoryMock.Add(new[] { employee });
         var controller = new EmployeeController(new EmployeeService(employeeRepositoryMock));
 
         var retrievedEmployee = controller.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(36000m); // 12 * 3000
+        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(36000m); // 12 * 3000 = 36000
     }
 }

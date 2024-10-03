@@ -5,7 +5,7 @@ using static PartsUnlimited.HRCost.Tests.EmployeeBuilder;
 
 namespace PartsUnlimited.HRCost.Tests;
 
-public class EmployeeCost5Tests
+public class EmployeeCostIntegrationTests : IClassFixture<DatabaseFixture>
 {
     [Fact]
     public void The_details_of_an_employee_can_be_viewed()
@@ -26,7 +26,7 @@ public class EmployeeCost5Tests
 
         var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(36000m); // 12 * 3000 = 36000
+        Check.That(retrievedEmployee.YearlyGrossSalaryCost).Is(36000m); // 12 * 3000
     }
     
     [Fact]
@@ -67,7 +67,7 @@ public class EmployeeCost5Tests
 
         var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.YearlyEmployerTax).Is(3600m); // 12 * 1000 * 30 % = 3600
+        Check.That(retrievedEmployee.YearlyEmployerTax).Is(3600m); // 12 * 1000 * 30 %
     }
 
     [Fact]
@@ -81,7 +81,7 @@ public class EmployeeCost5Tests
 
         var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.YearlyEmployerTax).Is(3900m); // 13 * 1000 * 30 % = 3900
+        Check.That(retrievedEmployee.YearlyEmployerTax).Is(3900m); // 13 * 1000 * 30 %
     }
 
     [Fact]
@@ -104,5 +104,23 @@ public class EmployeeCost5Tests
         var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
         Check.That(retrievedEmployee.CellPhonePlanCost).Is(0m);
+    }
+
+    // bonus
+    // chèques repas
+    // assurance groupe
+    // frais de représentation
+    // abonnement gsm
+    // voiture de société
+    
+    // total cost = sum of all other costs
+    // monthly cost = 1/12 of the yearly cost
+}
+
+public class DatabaseFixture : IDisposable
+{
+    public void Dispose()
+    {
+        // TODO release managed resources here
     }
 }
