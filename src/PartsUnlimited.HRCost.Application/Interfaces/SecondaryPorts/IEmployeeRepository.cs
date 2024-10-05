@@ -8,5 +8,6 @@ namespace PartsUnlimited.HRCost.Application.Interfaces.SecondaryPorts
         IEnumerable<Employee> GetEmployees();
         Employee GetEmployee(int id);
         void Update(Employee employee);
+        int Add(Employee employee);
     }
 }

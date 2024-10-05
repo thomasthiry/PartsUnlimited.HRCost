@@ -34,7 +34,7 @@ public class EmployeeRepository : IEmployeeRepository
         }
     }
 
-    public void Add(Employee employee)
+    public int Add(Employee employee)
     {
         using (var connection = _connectionFactory.Create())
         {
@@ -44,9 +44,11 @@ public class EmployeeRepository : IEmployeeRepository
                  ADDRESSPOSTALCODE, ADDRESSCOUNTRY, JOINEDCOMPANYDATE, GROSSMONTHLYSALARY, ISGRANTEDCAR, NBDAYSYEARLYHOLIDAYS)
                 VALUES 
                 (@Reference, @LastName, @FirstName, @DateOfBirth, @AddressNumber, @AddressStreet, @AddressCity, 
-                 @AddressPostalCode, @AddressCountry, @JoinedCompanyDate, @GrossMonthlySalary, @IsGrantedCar, @NbDaysYearlyHolidays)";
+                 @AddressPostalCode, @AddressCountry, @JoinedCompanyDate, @GrossMonthlySalary, @IsGrantedCar, @NbDaysYearlyHolidays);
+
+                SELECT CAST(SCOPE_IDENTITY() AS INT);";
                  
-            connection.Execute(sql, Map(employee));
+            return connection.QuerySingle<int>(sql, Map(employee));
         }
     }
 

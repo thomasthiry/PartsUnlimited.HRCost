@@ -48,6 +48,11 @@ namespace PartsUnlimited.HRCost.Infrastructure.Repositories
             File.WriteAllText(_filePath, jsonToWrite);
         }
 
+        public int Add(Employee employee)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Employee GetEmployee(int id)
         {
             var employees = GetEmployees();
