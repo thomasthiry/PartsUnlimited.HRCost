@@ -5,12 +5,23 @@ namespace PartsUnlimited.HRCost.Tests;
 public class EmployeeBuilder
 {
     private int _id = 1;
+    private int _reference = 1001;
     private string _firstName = "Nicolas";
     private string _lastName = "Cage";
-    private decimal _monthlyGrossSalary;
-    private bool _hasDoubleHolidayPremium;
-    private bool _hasEndOfYearPremium;
-    private bool _hasCellPhonePlan;
+    private DateTime _dateOfBirth = new DateTime(1990, 5, 22);
+    private string _addressNumber = "123";
+    private string _addressStreet = "Main Street";
+    private string _addressCity = "Wellington";
+    private string _addressPostalCode = "12345";
+    private string _addressCountry = "New Zealand";
+    private DateTime _joinedCompanyDate = new DateTime(2020, 6, 15);
+    private decimal _monthlyGrossSalary = 5000.00m;
+    private bool _isGrantedCar = false;
+    private int _nbDaysYearlyHolidays = 25;
+    private bool _hasDoubleHolidayPremium = false;
+    private bool _hasEndOfYearPremium = false;
+    private bool _hasCellPhonePlan = false;
+
 
     public static EmployeeBuilder AnEmployee()
     {
@@ -19,13 +30,25 @@ public class EmployeeBuilder
 
     public Employee Build()
     {
-        return new Employee(_firstName, _lastName) {
-            Id = _id, 
+        return new Employee(_firstName, _lastName) 
+        {
+            Id = _id,
+            Reference = _reference,
+            DateOfBirth = _dateOfBirth,
+            AddressNumber = _addressNumber,
+            AddressStreet = _addressStreet,
+            AddressCity = _addressCity,
+            AddressPostalCode = _addressPostalCode,
+            AddressCountry = _addressCountry,
+            JoinedCompanyDate = _joinedCompanyDate,
             MonthlyGrossSalary = _monthlyGrossSalary,
+            IsGrantedCar = _isGrantedCar,
+            NbDaysYearlyHolidays = _nbDaysYearlyHolidays,
             HasDoubleHolidayPremium = _hasDoubleHolidayPremium,
             HasEndOfYearPremium = _hasEndOfYearPremium,
             HasCellPhonePlan = _hasCellPhonePlan
         };
+
     }
 
     public EmployeeBuilder WithId(int id)

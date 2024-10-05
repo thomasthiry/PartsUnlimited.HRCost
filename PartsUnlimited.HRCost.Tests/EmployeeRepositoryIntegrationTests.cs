@@ -1,8 +1,8 @@
 ﻿using NFluent;
 using PartsUnlimited.HRCost.Application.Interfaces.SecondaryPorts;
-using PartsUnlimited.HRCost.Domain.Entities;
 using PartsUnlimited.HRCost.Infrastructure.Repositories;
 using PartsUnlimited.HRCost.Web;
+using static PartsUnlimited.HRCost.Tests.EmployeeBuilder;
 
 namespace PartsUnlimited.HRCost.Tests;
 
@@ -11,20 +11,7 @@ public class EmployeeRepositoryIntegrationTests
     [Theory, MemberData(nameof(RepositoryUnderTest))]
     public void Create_and_get_employee(IEmployeeRepository employeeRepository)
     {
-        var employee = new Employee("Jean", "Reno")
-        {
-            Reference = 1001,
-            DateOfBirth = new DateTime(1990, 1, 1),
-            AddressNumber = "123",
-            AddressStreet = "Main Street",
-            AddressCity = "Sample City",
-            AddressPostalCode = "12345",
-            AddressCountry = "Sample Country",
-            JoinedCompanyDate = new DateTime(2020, 6, 15),
-            MonthlyGrossSalary = 5000.00m,
-            IsGrantedCar = true,
-            NbDaysYearlyHolidays = 25
-        };
+        var employee = AnEmployee().Build();
 
         var employeeId = employeeRepository.Add(employee);
         
@@ -48,20 +35,7 @@ public class EmployeeRepositoryIntegrationTests
     [Theory, MemberData(nameof(RepositoryUnderTest))]
     public void Update_employee(IEmployeeRepository employeeRepository)
     {
-        var employee = new Employee("Jean", "Reno")
-        {
-            Reference = 1001,
-            DateOfBirth = new DateTime(1990, 1, 1),
-            AddressNumber = "123",
-            AddressStreet = "Main Street",
-            AddressCity = "Sample City",
-            AddressPostalCode = "12345",
-            AddressCountry = "Sample Country",
-            JoinedCompanyDate = new DateTime(2020, 6, 15),
-            MonthlyGrossSalary = 5000.00m,
-            IsGrantedCar = true,
-            NbDaysYearlyHolidays = 25
-        };
+        var employee = AnEmployee().Build();
 
         var employeeId = employeeRepository.Add(employee);
 
