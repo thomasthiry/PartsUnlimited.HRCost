@@ -26,9 +26,9 @@ public class EmployeeRepositoryIntegrationTests
             NbDaysYearlyHolidays = 25
         };
 
-        var newIdentifier = employeeRepository.Add(employee);
+        var employeeId = employeeRepository.Add(employee);
         
-        var fetchedEmployee = employeeRepository.GetEmployee(newIdentifier);
+        var fetchedEmployee = employeeRepository.GetEmployee(employeeId);
 
         Check.That(fetchedEmployee.Reference).Is(employee.Reference);
         Check.That(fetchedEmployee.LastName).Is(employee.LastName);
@@ -45,8 +45,39 @@ public class EmployeeRepositoryIntegrationTests
         Check.That(fetchedEmployee.NbDaysYearlyHolidays).Is(employee.NbDaysYearlyHolidays);
     }
 
+    [Theory, MemberData(nameof(RepositoryUnderTest))]
+    public void Update_employee(IEmployeeRepository employeeRepository)
+    {
+        var employee = new Employee("Jean", "Reno")
+        {
+            Reference = 1001,
+            DateOfBirth = new DateTime(1990, 1, 1),
+            AddressNumber = "123",
+            AddressStreet = "Main Street",
+            AddressCity = "Sample City",
+            AddressPostalCode = "12345",
+            AddressCountry = "Sample Country",
+            JoinedCompanyDate = new DateTime(2020, 6, 15),
+            MonthlyGrossSalary = 5000.00m,
+            IsGrantedCar = true,
+            NbDaysYearlyHolidays = 25
+        };
+
+        var employeeId = employeeRepository.Add(employee);
+
+        employee.AddressCountry = "Wonderland";
+        
+        employeeRepository.Update(employee);
+        
+        var fetchedEmployee = employeeRepository.GetEmployee(employeeId);
+
+        Check.That(fetchedEmployee.AddressCountry).Is("Wonderland");
+    }
+
     public static IEnumerable<object[]> RepositoryUnderTest()
     {
-        return new[] { new object[] { new EmployeeRepositoryMock() }, new object[] { new EmployeeRepository(new SqlConnectionFactory("Server=localhost;Database=PARTS_UNLIMITED_HR_COSTS;User Id=sa;Password=Evolve11!;")) } };
+        return new[] { 
+            new object[] { new EmployeeRepositoryMock() }, 
+            new object[] { new EmployeeRepository(new SqlConnectionFactory("Server=localhost;Database=PARTS_UNLIMITED_HR_COSTS;User Id=sa;Password=Evolve11!;")) } };
     }
 }

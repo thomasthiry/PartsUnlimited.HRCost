@@ -6,6 +6,8 @@ namespace PartsUnlimited.HRCost.Tests;
 
 public class EmployeeRepositoryMock : IEmployeeRepository
 {
+    // TODO Handle errors like the actual repository would
+    
     private List<Employee> _employees = new();
 
     public IEnumerable<Employee> GetEmployees()
@@ -15,19 +17,20 @@ public class EmployeeRepositoryMock : IEmployeeRepository
 
     public Employee GetEmployee(int id)
     {
-        return _employees.First(e => e.Id == id);
+        return DeepCopy(_employees.First(e => e.Id == id));
     }
 
     public void Update(Employee employee)
     {
-        throw new NotImplementedException();
+        _employees.Remove(employee);
+        _employees.Add(DeepCopy(employee));
     }
 
     public int Add(Employee employee)
     {
-        var employeeCopy = DeepCopy(employee);
         var newIdentifier = _employees.Any() ? _employees.Max(e => e.Id) : 1;
-        employeeCopy.Id = newIdentifier;
+        employee.Id = newIdentifier; // Update entity provided with new Id
+        var employeeCopy = DeepCopy(employee);
         _employees.Add(employeeCopy);
         return newIdentifier;
     }

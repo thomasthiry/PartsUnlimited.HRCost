@@ -33,5 +33,33 @@ namespace PartsUnlimited.HRCost.Domain.Entities
         public decimal YearlyEmployerTax => YearlyGrossSalaryCost * 0.3m;
         public bool HasCellPhonePlan { get; set; }
         public decimal CellPhonePlanCost => HasCellPhonePlan ? 12 * 50m : 0m;
+
+        protected bool Equals(Employee other)
+        {
+            return Id == other.Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Employee)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
+
+        public static bool operator ==(Employee left, Employee right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(Employee left, Employee right)
+        {
+            return !Equals(left, right);
+        }
     }
 }

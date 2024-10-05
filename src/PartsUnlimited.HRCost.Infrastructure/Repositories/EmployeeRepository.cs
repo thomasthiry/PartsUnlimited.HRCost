@@ -47,8 +47,10 @@ public class EmployeeRepository : IEmployeeRepository
                  @AddressPostalCode, @AddressCountry, @JoinedCompanyDate, @GrossMonthlySalary, @IsGrantedCar, @NbDaysYearlyHolidays);
 
                 SELECT CAST(SCOPE_IDENTITY() AS INT);";
-                 
-            return connection.QuerySingle<int>(sql, Map(employee));
+
+            var newIdentifier = connection.QuerySingle<int>(sql, Map(employee));
+            employee.Id = newIdentifier;
+            return newIdentifier;
         }
     }
 
