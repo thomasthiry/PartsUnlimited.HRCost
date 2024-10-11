@@ -6,18 +6,21 @@ namespace PartsUnlimited.HRCost.Tests;
 
 public class DatabaseFixture : IDisposable
 {
+    private Database _database;
+
     public DatabaseFixture()
     {
-        var database = new Database("Server=localhost;Database=master;User Id=sa;Password=Evolve11!;", "HRCosts");
+        _database = new Database("Server=localhost;Database=master;User Id=sa;Password=Evolve11!;", "HRCosts");
         
-        database.Create().GetAwaiter().GetResult();
+        _database.Create().GetAwaiter().GetResult();
 
         var initializeScript = File.ReadAllText(@"..\..\..\..\database\Initialize.sql");
-        database.Execute(initializeScript).GetAwaiter().GetResult();
+        _database.Execute(initializeScript).GetAwaiter().GetResult();
     }
+    
     public void Dispose()
     {
-        
+        _database.Drop().GetAwaiter().GetResult();
     }
 }
 
@@ -36,22 +39,27 @@ public class Database
 
     public Task Create()
     {
-        return Execute(ConnectionString, $@"CREATE DATABASE {_databaseName};");
+        return ExecuteWithoutUsing($@"CREATE DATABASE {_databaseName};");
     }
 
     public async Task Execute(string script)
     {
         var scriptUsingDb = $"USE {_databaseName};\n {script}";
-        await Execute(ConnectionString, scriptUsingDb);
+        await ExecuteWithoutUsing(scriptUsingDb);
     }
     
-    private async Task Execute(string connectionString, string script)
+    private async Task ExecuteWithoutUsing(string script)
     {
-        using (var connection = new SqlConnection(connectionString))
-        {
-            await connection.OpenAsync();
+        await using var connection = new SqlConnection(ConnectionString);
+        
+        await connection.OpenAsync();
 
-            var numberOfRowasAffected = await connection.ExecuteAsync(script);
-        }
+        var numberOfRowasAffected = await connection.ExecuteAsync(script);
+    }
+
+    public async Task Drop()
+    {
+        await ExecuteWithoutUsing($"ALTER DATABASE [{_databaseName}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
+        await ExecuteWithoutUsing($"DROP DATABASE [{_databaseName}]");
     }
 }
