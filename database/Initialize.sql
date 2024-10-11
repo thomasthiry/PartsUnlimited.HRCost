@@ -1,11 +1,3 @@
-DROP DATABASE PARTS_UNLIMITED_HR_COSTS;
-GO
-
-CREATE DATABASE PARTS_UNLIMITED_HR_COSTS;
-GO
-
-USE PARTS_UNLIMITED_HR_COSTS;
-
 CREATE TABLE EMPLOYEE (
    ID 			        INT IDENTITY(1,1) PRIMARY KEY     NOT NULL,
    REFERENCE            INT                     NOT NULL,
@@ -22,8 +14,6 @@ CREATE TABLE EMPLOYEE (
    ISGRANTEDCAR         BIT,
    NBDAYSYEARLYHOLIDAYS INT
 );
-
-GO
 
 INSERT INTO employee
 (reference, lastname, firstname, dateofbirth, addressnumber, addressstreet, addresscity, addresspostalcode, addresscountry, joinedcompanydate, grossmonthlysalary, isgrantedcar, nbdaysyearlyholidays)
