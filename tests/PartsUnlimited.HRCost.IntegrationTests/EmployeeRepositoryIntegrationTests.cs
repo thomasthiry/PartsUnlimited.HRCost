@@ -1,10 +1,11 @@
 ﻿using NFluent;
 using PartsUnlimited.HRCost.Application.Interfaces.SecondaryPorts;
 using PartsUnlimited.HRCost.Infrastructure.Repositories;
+using PartsUnlimited.HRCost.Tests;
 using PartsUnlimited.HRCost.Web;
 using static PartsUnlimited.HRCost.Tests.EmployeeBuilder;
 
-namespace PartsUnlimited.HRCost.Tests;
+namespace PartsUnlimited.HRCost.IntegrationTests;
 
 public abstract class EmployeeRepositoryIntegrationTests
 {

@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
 using Dapper;
 
-namespace PartsUnlimited.HRCost.Tests;
+namespace PartsUnlimited.HRCost.IntegrationTests;
 
 public class Database
 {

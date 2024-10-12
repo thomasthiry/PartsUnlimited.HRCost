@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace PartsUnlimited.HRCost.Tests;
+﻿namespace PartsUnlimited.HRCost.IntegrationTests;
 
 public class DatabaseFixture : IDisposable
 {
@@ -12,7 +10,7 @@ public class DatabaseFixture : IDisposable
         
         _database.Create().GetAwaiter().GetResult();
 
-        var initializeScript = File.ReadAllText(@"..\..\..\..\database\Initialize.sql");
+        var initializeScript = File.ReadAllText(@"..\..\..\..\..\database\Initialize.sql");
         _database.Execute(initializeScript).GetAwaiter().GetResult();
     }
     
