@@ -19,7 +19,7 @@ namespace PartsUnlimited.HRCost.Web.ViewModels
         [DataType(DataType.Date)]
         public DateTime? JoinedCompanyDate { get; set; }
         public decimal MonthlyGrossSalary { get; set; }
-        public bool IsGrantedCar { get; set; }
+        public bool HasCellPhonePlan { get; set; }
         public int NbDaysYearlyHolidays { get; set; }
         public decimal YearlyGrossSalaryCost { get; set; }
         public decimal YearlyEmployerTax { get; set; }

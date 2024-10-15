@@ -22,7 +22,6 @@ namespace PartsUnlimited.HRCost.Domain.Entities
         public string AddressCountry { get; set; }
         public DateTime? JoinedCompanyDate { get; set; }
         public decimal MonthlyGrossSalary { get; set; }
-        public bool IsGrantedCar { get; set; }
         public int NbDaysYearlyHolidays { get; set; }
         public decimal YearlyGrossSalaryCost => 
             12 * MonthlyGrossSalary 

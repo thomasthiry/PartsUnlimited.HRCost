@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Dapper;
 using PartsUnlimited.HRCost.Application.Interfaces.SecondaryPorts;
 using PartsUnlimited.HRCost.Domain.Entities;
@@ -41,10 +40,10 @@ public class EmployeeRepository : IEmployeeRepository
             const string sql = @"
                 INSERT INTO EMPLOYEE 
                 (REFERENCE, LASTNAME, FIRSTNAME, DATEOFBIRTH, ADDRESSNUMBER, ADDRESSSTREET, ADDRESSCITY, 
-                 ADDRESSPOSTALCODE, ADDRESSCOUNTRY, JOINEDCOMPANYDATE, GROSSMONTHLYSALARY, ISGRANTEDCAR, NBDAYSYEARLYHOLIDAYS)
+                 ADDRESSPOSTALCODE, ADDRESSCOUNTRY, JOINEDCOMPANYDATE, GROSSMONTHLYSALARY, HASCELLPHONEPLAN, NBDAYSYEARLYHOLIDAYS, HASDOUBLEHOLIDAYPREMIUM, HASENDOFYEARPREMIUM)
                 VALUES 
                 (@Reference, @LastName, @FirstName, @DateOfBirth, @AddressNumber, @AddressStreet, @AddressCity, 
-                 @AddressPostalCode, @AddressCountry, @JoinedCompanyDate, @GrossMonthlySalary, @IsGrantedCar, @NbDaysYearlyHolidays);
+                 @AddressPostalCode, @AddressCountry, @JoinedCompanyDate, @GrossMonthlySalary, @HasCellPhonePlan, @NbDaysYearlyHolidays, @HasDoubleHolidayPremium, @HasEndOfYearPremium);
 
                 SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
@@ -71,7 +70,7 @@ public class EmployeeRepository : IEmployeeRepository
                     ADDRESSCOUNTRY = @AddressCountry,
                     JOINEDCOMPANYDATE = @JoinedCompanyDate,
                     GROSSMONTHLYSALARY = @GrossMonthlySalary,
-                    ISGRANTEDCAR = @IsGrantedCar,
+                    HASCELLPHONEPLAN = @HasCellPhonePlan,
                     NBDAYSYEARLYHOLIDAYS = @NbDaysYearlyHolidays
                 WHERE ID = @Id";
             
@@ -110,8 +109,10 @@ public class EmployeeRepository : IEmployeeRepository
             AddressCountry = employeeRecord.AddressCountry,
             JoinedCompanyDate = employeeRecord.JoinedCompanyDate,
             MonthlyGrossSalary = employeeRecord.GrossMonthlySalary.GetValueOrDefault(),
-            IsGrantedCar = employeeRecord.IsGrantedCar,
-            NbDaysYearlyHolidays = employeeRecord.NbDaysYearlyHolidays.GetValueOrDefault()
+            HasCellPhonePlan = employeeRecord.HasCellPhonePlan,
+            NbDaysYearlyHolidays = employeeRecord.NbDaysYearlyHolidays.GetValueOrDefault(),
+            HasDoubleHolidayPremium = employeeRecord.HasDoubleHolidayPremium,
+            HasEndOfYearPremium = employeeRecord.HasEndOfYearPremium
         };
     }
 
@@ -131,8 +132,10 @@ public class EmployeeRepository : IEmployeeRepository
             AddressCountry = employee.AddressCountry,
             JoinedCompanyDate = employee.JoinedCompanyDate,
             GrossMonthlySalary = employee.MonthlyGrossSalary,
-            IsGrantedCar = employee.IsGrantedCar,
-            NbDaysYearlyHolidays = employee.NbDaysYearlyHolidays
+            HasCellPhonePlan = employee.HasCellPhonePlan,
+            NbDaysYearlyHolidays = employee.NbDaysYearlyHolidays,
+            HasDoubleHolidayPremium = employee.HasDoubleHolidayPremium,
+            HasEndOfYearPremium = employee.HasEndOfYearPremium
         };
     }
 }

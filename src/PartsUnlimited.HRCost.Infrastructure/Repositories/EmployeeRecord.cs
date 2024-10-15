@@ -16,6 +16,8 @@ public class EmployeeRecord
     public string AddressCountry { get; set; }
     public DateTime? JoinedCompanyDate { get; set; }
     public decimal? GrossMonthlySalary { get; set; }
-    public bool IsGrantedCar { get; set; }
+    public bool HasCellPhonePlan { get; set; }
     public int? NbDaysYearlyHolidays { get; set; }
+    public bool HasDoubleHolidayPremium { get; set; }
+    public bool HasEndOfYearPremium { get; set; }
 }

@@ -16,7 +16,6 @@ public class EmployeeBuilder
     private string _addressCountry = "New Zealand";
     private DateTime _joinedCompanyDate = new DateTime(2020, 6, 15);
     private decimal _monthlyGrossSalary = 5000.00m;
-    private bool _isGrantedCar = false;
     private int _nbDaysYearlyHolidays = 25;
     private bool _hasDoubleHolidayPremium = false;
     private bool _hasEndOfYearPremium = false;
@@ -42,7 +41,6 @@ public class EmployeeBuilder
             AddressCountry = _addressCountry,
             JoinedCompanyDate = _joinedCompanyDate,
             MonthlyGrossSalary = _monthlyGrossSalary,
-            IsGrantedCar = _isGrantedCar,
             NbDaysYearlyHolidays = _nbDaysYearlyHolidays,
             HasDoubleHolidayPremium = _hasDoubleHolidayPremium,
             HasEndOfYearPremium = _hasEndOfYearPremium,

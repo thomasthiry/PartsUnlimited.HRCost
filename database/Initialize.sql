@@ -11,10 +11,12 @@ CREATE TABLE EMPLOYEE (
    ADDRESSCOUNTRY       VARCHAR(255),
    JOINEDCOMPANYDATE    DATE,
    GROSSMONTHLYSALARY   DECIMAL(19,4), -- Use DECIMAL for money values
-   ISGRANTEDCAR         BIT,
-   NBDAYSYEARLYHOLIDAYS INT
+   HASCELLPHONEPLAN     BIT,
+   NBDAYSYEARLYHOLIDAYS INT,
+   HASDOUBLEHOLIDAYPREMIUM BIT,
+   HASENDOFYEARPREMIUM  BIT
 );
 
-INSERT INTO employee
-(reference, lastname, firstname, dateofbirth, addressnumber, addressstreet, addresscity, addresspostalcode, addresscountry, joinedcompanydate, grossmonthlysalary, isgrantedcar, nbdaysyearlyholidays)
-VALUES(1, 'Cooper', 'Dale', '1959-02-22', '54', 'Trees street', 'Yakima, Washington', '98908', 'USA', '2015-03-18', 3000, 0, 20);
+-- INSERT INTO employee
+-- (reference, lastname, firstname, dateofbirth, addressnumber, addressstreet, addresscity, addresspostalcode, addresscountry, joinedcompanydate, grossmonthlysalary, HASCELLPHONEPLAN, nbdaysyearlyholidays)
+-- VALUES(1, 'Cooper', 'Dale', '1959-02-22', '54', 'Trees street', 'Yakima, Washington', '98908', 'USA', '2015-03-18', 3000, 0, 20);

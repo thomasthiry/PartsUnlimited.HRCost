@@ -21,7 +21,7 @@ namespace PartsUnlimited.HRCost.Web.Controllers
                 AddressCountry = employee.AddressCountry,
                 JoinedCompanyDate = employee.JoinedCompanyDate,
                 MonthlyGrossSalary = employee.MonthlyGrossSalary,
-                IsGrantedCar = employee.IsGrantedCar,
+                HasCellPhonePlan = employee.HasCellPhonePlan,
                 NbDaysYearlyHolidays = employee.NbDaysYearlyHolidays,
                 YearlyGrossSalaryCost = employee.YearlyGrossSalaryCost,
                 YearlyEmployerTax = employee.YearlyEmployerTax,
@@ -43,7 +43,7 @@ namespace PartsUnlimited.HRCost.Web.Controllers
                 AddressCountry = employee.AddressCountry,
                 JoinedCompanyDate = employee.JoinedCompanyDate,
                 MonthlyGrossSalary = employee.MonthlyGrossSalary,
-                IsGrantedCar = employee.IsGrantedCar,
+                HasCellPhonePlan = employee.HasCellPhonePlan,
                 NbDaysYearlyHolidays = employee.NbDaysYearlyHolidays,
             };
         }

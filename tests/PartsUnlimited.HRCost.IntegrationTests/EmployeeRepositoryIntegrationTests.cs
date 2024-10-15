@@ -15,6 +15,9 @@ public abstract class EmployeeRepositoryIntegrationTests
     public void Create_and_get_employee()
     {
         var employee = AnEmployee().Build();
+        employee.HasCellPhonePlan = true;
+        employee.HasDoubleHolidayPremium = true;
+        employee.HasEndOfYearPremium = true;
 
         var employeeId = _employeeRepository.Add(employee);
         
@@ -31,14 +34,20 @@ public abstract class EmployeeRepositoryIntegrationTests
         Check.That(fetchedEmployee.AddressCountry).Is(employee.AddressCountry);
         Check.That(fetchedEmployee.JoinedCompanyDate).Is(employee.JoinedCompanyDate);
         Check.That(fetchedEmployee.MonthlyGrossSalary).Is(employee.MonthlyGrossSalary);
-        Check.That(fetchedEmployee.IsGrantedCar).Is(employee.IsGrantedCar);
+        Check.That(fetchedEmployee.HasCellPhonePlan).Is(employee.HasCellPhonePlan);
         Check.That(fetchedEmployee.NbDaysYearlyHolidays).Is(employee.NbDaysYearlyHolidays);
+        Check.That(fetchedEmployee.HasDoubleHolidayPremium).Is(employee.HasDoubleHolidayPremium);
+        Check.That(fetchedEmployee.HasEndOfYearPremium).Is(employee.HasEndOfYearPremium);
     }
 
+    // TODO MODIFY ALL FIELDS
     [Fact]
     public void Update_employee()
     {
         var employee = AnEmployee().Build();
+        employee.HasCellPhonePlan = true;
+        employee.HasDoubleHolidayPremium = true;
+        employee.HasEndOfYearPremium = true;
 
         var employeeId = _employeeRepository.Add(employee);
 

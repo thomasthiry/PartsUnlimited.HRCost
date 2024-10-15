@@ -40,7 +40,7 @@ namespace PartsUnlimited.HRCost.Infrastructure.Repositories
             employeeFromDb.AddressCountry = employee.AddressCountry;
             employeeFromDb.JoinedCompanyDate = employee.JoinedCompanyDate;
             employeeFromDb.MonthlyGrossSalary = employee.MonthlyGrossSalary;
-            employeeFromDb.IsGrantedCar = employee.IsGrantedCar;
+            employeeFromDb.HasCellPhonePlan = employee.HasCellPhonePlan;
             employeeFromDb.NbDaysYearlyHolidays = employee.NbDaysYearlyHolidays;
 
             var jsonToWrite = JsonConvert.SerializeObject(employees);

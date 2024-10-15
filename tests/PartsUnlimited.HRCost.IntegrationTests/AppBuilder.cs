@@ -9,16 +9,17 @@ namespace PartsUnlimited.HRCost.IntegrationTests;
 
 public class IntegrationAppBuilder
 {
+    private readonly SqlConnectionFactory _sqlConnectionFactory;
     private List<Employee> _employees = new();
 
-    public static IntegrationAppBuilder AnApp()
+    public IntegrationAppBuilder(SqlConnectionFactory sqlConnectionFactory)
     {
-        return new IntegrationAppBuilder();
+        _sqlConnectionFactory = sqlConnectionFactory;
     }
 
-    public TestingAppContext Build(SqlConnectionFactory sqlConnectionFactory)
+    public TestingAppContext Build()
     {
-        var employeeRepository = new EmployeeRepository(sqlConnectionFactory);
+        var employeeRepository = new EmployeeRepository(_sqlConnectionFactory);
         foreach (var employee in _employees)
         {
             employeeRepository.Add(employee);
