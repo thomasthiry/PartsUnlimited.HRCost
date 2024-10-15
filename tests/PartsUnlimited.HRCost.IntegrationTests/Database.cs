@@ -6,14 +6,15 @@ namespace PartsUnlimited.HRCost.IntegrationTests;
 public class Database
 {
     private readonly string _databaseName;
-    public string ConnectionString { get; }
+    public string ConnectionStringMaster { get; }
+    public string ConnectionString => ConnectionStringMaster.Replace("=master", $"={_databaseName}");
 
-    public Database(string connectionString, string databaseName)
+    public Database(string connectionStringMaster, string databaseName)
     {
         var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
         
         _databaseName = $"{databaseName}_{timestamp}";
-        ConnectionString = connectionString;
+        ConnectionStringMaster = connectionStringMaster;
     }
 
     public Task Create()
@@ -29,7 +30,7 @@ public class Database
     
     private async Task ExecuteWithoutUsing(string script)
     {
-        await using var connection = new SqlConnection(ConnectionString);
+        await using var connection = new SqlConnection(ConnectionStringMaster);
         
         await connection.OpenAsync();
 

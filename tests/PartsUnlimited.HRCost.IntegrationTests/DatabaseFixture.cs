@@ -2,11 +2,13 @@
 
 public class DatabaseFixture : IDisposable
 {
-    private Database _database;
+    private readonly Database _database;
+    private const string ConnectionStringMaster = "Server=localhost;Database=master;User Id=sa;Password=Evolve11!;";
+    public string ConnectionString => _database.ConnectionString;
 
     public DatabaseFixture()
     {
-        _database = new Database("Server=localhost;Database=master;User Id=sa;Password=Evolve11!;", "HRCosts");
+        _database = new Database(ConnectionStringMaster, "HRCosts");
         
         _database.Create().GetAwaiter().GetResult();
 

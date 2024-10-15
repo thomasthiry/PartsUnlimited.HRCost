@@ -9,14 +9,7 @@ namespace PartsUnlimited.HRCost.IntegrationTests;
 
 public abstract class EmployeeRepositoryIntegrationTests
 {
-    private readonly IEmployeeRepository _employeeRepository;
-
-    protected EmployeeRepositoryIntegrationTests()
-    {
-        _employeeRepository = GetEmployeeRepository(); // A new instance is created for each TEST
-    }
-
-    protected abstract IEmployeeRepository GetEmployeeRepository();
+    protected IEmployeeRepository _employeeRepository;
 
     [Fact]
     public void Create_and_get_employee()
@@ -61,16 +54,16 @@ public abstract class EmployeeRepositoryIntegrationTests
 
 public class EmployeeRepositoryMockIntegrationTests : EmployeeRepositoryIntegrationTests
 {
-    protected override IEmployeeRepository GetEmployeeRepository()
+    public EmployeeRepositoryMockIntegrationTests()
     {
-        return new EmployeeRepositoryMock();
+        _employeeRepository = new EmployeeRepositoryMock(); // A new instance is created for each TEST
     }
 }
 
 public class EmployeeRepositoryDbIntegrationTests : EmployeeRepositoryIntegrationTests, IClassFixture<DatabaseFixture>
 {
-    protected override IEmployeeRepository GetEmployeeRepository()
+    public EmployeeRepositoryDbIntegrationTests(DatabaseFixture databaseFixture) : base()
     {
-        return new EmployeeRepository(new SqlConnectionFactory("Server=localhost;Database=PARTS_UNLIMITED_HR_COSTS;User Id=sa;Password=Evolve11!;"));
+        _employeeRepository = new EmployeeRepository(new SqlConnectionFactory(databaseFixture.ConnectionString));
     }
 }

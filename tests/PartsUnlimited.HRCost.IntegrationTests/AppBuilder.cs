@@ -16,9 +16,13 @@ public class IntegrationAppBuilder
         return new IntegrationAppBuilder();
     }
 
-    public TestingAppContext Build()
+    public TestingAppContext Build(SqlConnectionFactory sqlConnectionFactory)
     {
-        var employeeRepository = new EmployeeRepository(new SqlConnectionFactory("Server=localhost;Database=PARTS_UNLIMITED_HR_COSTS;User Id=sa;Password=Evolve11!;"));
+        var employeeRepository = new EmployeeRepository(sqlConnectionFactory);
+        foreach (var employee in _employees)
+        {
+            employeeRepository.Add(employee);
+        }
         
         return new TestingAppContext
         {
