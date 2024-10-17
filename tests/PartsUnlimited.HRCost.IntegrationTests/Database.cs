@@ -11,9 +11,10 @@ public class Database
 
     public Database(string connectionStringMaster, string databaseName)
     {
-        var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+        var timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+        var randomId = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8);
         
-        _databaseName = $"{databaseName}_{timestamp}";
+        _databaseName = $"{databaseName}_{timestamp}_{randomId}";
         ConnectionStringMaster = connectionStringMaster;
     }
 
