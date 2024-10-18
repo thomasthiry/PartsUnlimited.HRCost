@@ -71,7 +71,9 @@ public class EmployeeRepository : IEmployeeRepository
                     JOINEDCOMPANYDATE = @JoinedCompanyDate,
                     GROSSMONTHLYSALARY = @GrossMonthlySalary,
                     HASCELLPHONEPLAN = @HasCellPhonePlan,
-                    NBDAYSYEARLYHOLIDAYS = @NbDaysYearlyHolidays
+                    NBDAYSYEARLYHOLIDAYS = @NbDaysYearlyHolidays,
+                    HASDOUBLEHOLIDAYPREMIUM = @HasDoubleHolidayPremium,
+                    HASENDOFYEARPREMIUM = @HasEndOfYearPremium
                 WHERE ID = @Id";
             
             connection.Execute(sql, Map(employee));

@@ -15,49 +15,101 @@ public abstract class EmployeeRepositoryIntegrationTests
     public void Create_and_get_employee()
     {
         var employee = AnEmployee().Build();
-        employee.HasCellPhonePlan = true;
+        employee.Reference = 12345;
+        employee.FirstName = "Simon";
+        employee.LastName = "Gruber";
+        employee.DateOfBirth = new DateTime(1990, 12, 13);
+        employee.AddressNumber = "888";
+        employee.AddressStreet = "Main Street";
+        employee.AddressCity = "Metropolis";
+        employee.AddressPostalCode = "9654";
+        employee.AddressCountry = "Wonderland";
+        employee.JoinedCompanyDate = new DateTime(2020, 4, 3);
+        employee.MonthlyGrossSalary = 3000.00m;
+        employee.NbDaysYearlyHolidays = 25;
         employee.HasDoubleHolidayPremium = true;
         employee.HasEndOfYearPremium = true;
+        employee.HasCellPhonePlan = true;
 
         var employeeId = _employeeRepository.Add(employee);
         
         var fetchedEmployee = _employeeRepository.GetEmployee(employeeId);
 
-        Check.That(fetchedEmployee.Reference).Is(employee.Reference);
-        Check.That(fetchedEmployee.LastName).Is(employee.LastName);
-        Check.That(fetchedEmployee.FirstName).Is(employee.FirstName);
-        Check.That(fetchedEmployee.DateOfBirth).Is(employee.DateOfBirth);
-        Check.That(fetchedEmployee.AddressNumber).Is(employee.AddressNumber);
-        Check.That(fetchedEmployee.AddressStreet).Is(employee.AddressStreet);
-        Check.That(fetchedEmployee.AddressCity).Is(employee.AddressCity);
-        Check.That(fetchedEmployee.AddressPostalCode).Is(employee.AddressPostalCode);
-        Check.That(fetchedEmployee.AddressCountry).Is(employee.AddressCountry);
-        Check.That(fetchedEmployee.JoinedCompanyDate).Is(employee.JoinedCompanyDate);
-        Check.That(fetchedEmployee.MonthlyGrossSalary).Is(employee.MonthlyGrossSalary);
-        Check.That(fetchedEmployee.HasCellPhonePlan).Is(employee.HasCellPhonePlan);
-        Check.That(fetchedEmployee.NbDaysYearlyHolidays).Is(employee.NbDaysYearlyHolidays);
-        Check.That(fetchedEmployee.HasDoubleHolidayPremium).Is(employee.HasDoubleHolidayPremium);
-        Check.That(fetchedEmployee.HasEndOfYearPremium).Is(employee.HasEndOfYearPremium);
+        Check.That(fetchedEmployee.Reference).Is(12345);
+        Check.That(fetchedEmployee.FirstName).Is("Simon");
+        Check.That(fetchedEmployee.LastName).Is("Gruber");
+        Check.That(fetchedEmployee.DateOfBirth).Is(new DateTime(1990, 12, 13));
+        Check.That(fetchedEmployee.AddressNumber).Is("888");
+        Check.That(fetchedEmployee.AddressStreet).Is("Main Street");
+        Check.That(fetchedEmployee.AddressCity).Is("Metropolis");
+        Check.That(fetchedEmployee.AddressPostalCode).Is("9654");
+        Check.That(fetchedEmployee.AddressCountry).Is("Wonderland");
+        Check.That(fetchedEmployee.JoinedCompanyDate).Is(new DateTime(2020, 4, 3));
+        Check.That(fetchedEmployee.MonthlyGrossSalary).Is(3000.00m);
+        Check.That(fetchedEmployee.NbDaysYearlyHolidays).Is(25);
+        Check.That(fetchedEmployee.HasDoubleHolidayPremium).Is(true);
+        Check.That(fetchedEmployee.HasEndOfYearPremium).Is(true);
+        Check.That(fetchedEmployee.HasCellPhonePlan).Is(true);
     }
 
-    // TODO MODIFY ALL FIELDS
     [Fact]
     public void Update_employee()
     {
         var employee = AnEmployee().Build();
-        employee.HasCellPhonePlan = true;
-        employee.HasDoubleHolidayPremium = true;
-        employee.HasEndOfYearPremium = true;
+        employee.Reference = 1;
+        employee.FirstName = "Jake";
+        employee.LastName = "Gyllenhaal";
+        employee.DateOfBirth = new DateTime(1980, 1, 1);
+        employee.AddressNumber = "1";
+        employee.AddressStreet = "1";
+        employee.AddressCity = "1";
+        employee.AddressPostalCode = "1";
+        employee.AddressCountry = "1";
+        employee.JoinedCompanyDate = new DateTime(2020, 1, 1);
+        employee.MonthlyGrossSalary = 1.00m;
+        employee.NbDaysYearlyHolidays = 1;
+        employee.HasDoubleHolidayPremium = false;
+        employee.HasEndOfYearPremium = false;
+        employee.HasCellPhonePlan = false;
 
         var employeeId = _employeeRepository.Add(employee);
 
+        employee.Reference = 12345;
+        employee.FirstName = "Simon";
+        employee.LastName = "Gruber";
+        employee.DateOfBirth = new DateTime(1990, 12, 13);
+        employee.AddressNumber = "888";
+        employee.AddressStreet = "Main Street";
+        employee.AddressCity = "Metropolis";
+        employee.AddressPostalCode = "9654";
         employee.AddressCountry = "Wonderland";
+        employee.JoinedCompanyDate = new DateTime(2020, 4, 3);
+        employee.MonthlyGrossSalary = 3000.00m;
+        employee.NbDaysYearlyHolidays = 25;
+        employee.HasDoubleHolidayPremium = true;
+        employee.HasEndOfYearPremium = true;
+        employee.HasCellPhonePlan = true;
         
         _employeeRepository.Update(employee);
         
         var fetchedEmployee = _employeeRepository.GetEmployee(employeeId);
 
+        Check.That(fetchedEmployee.Reference).Is(12345);
+        Check.That(fetchedEmployee.FirstName).Is("Simon");
+        Check.That(fetchedEmployee.LastName).Is("Gruber");
+        Check.That(fetchedEmployee.DateOfBirth).Is(new DateTime(1990, 12, 13));
+        Check.That(fetchedEmployee.AddressNumber).Is("888");
+        Check.That(fetchedEmployee.AddressStreet).Is("Main Street");
+        Check.That(fetchedEmployee.AddressCity).Is("Metropolis");
+        Check.That(fetchedEmployee.AddressPostalCode).Is("9654");
         Check.That(fetchedEmployee.AddressCountry).Is("Wonderland");
+        Check.That(fetchedEmployee.JoinedCompanyDate).Is(new DateTime(2020, 4, 3));
+        Check.That(fetchedEmployee.MonthlyGrossSalary).Is(3000.00m);
+        Check.That(fetchedEmployee.NbDaysYearlyHolidays).Is(25);
+        Check.That(fetchedEmployee.HasDoubleHolidayPremium).Is(true);
+        Check.That(fetchedEmployee.HasEndOfYearPremium).Is(true);
+        Check.That(fetchedEmployee.HasCellPhonePlan).Is(true);
+
     }
 }
 
