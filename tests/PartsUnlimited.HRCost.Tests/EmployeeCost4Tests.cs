@@ -10,12 +10,12 @@ public class EmployeeCost4Tests
     [Fact]
     public void The_details_of_an_employee_can_be_viewed()
     {
-        var employee = AnEmployee().Build();
+        var employee = AnEmployee().WithLastName("Poelvoorde").Build();
         var context = AnApp().With(employee).Build();
         
         var retrievedEmployee = context.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.LastName).Is(employee.LastName);
+        Check.That(retrievedEmployee.LastName).Is("Poelvoorde");
     }
     
     [Fact]

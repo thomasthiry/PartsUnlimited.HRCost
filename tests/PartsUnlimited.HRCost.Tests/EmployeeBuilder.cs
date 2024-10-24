@@ -85,4 +85,10 @@ public class EmployeeBuilder
         _hasCellPhonePlan = true;
         return this;
     }
+
+    public EmployeeBuilder WithoutCellPhonePlan()
+    {
+        _hasCellPhonePlan = false;
+        return this;
+    }
 }

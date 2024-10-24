@@ -10,12 +10,12 @@ public class EmployeeCost5Tests
     [Fact]
     public void The_details_of_an_employee_can_be_viewed()
     {
-        var employee = AnEmployee().Build();
+        var employee = AnEmployee().WithLastName("Poelvoorde").Build();
         var context = AnApp().With(employee).Build();
         
         var retrievedEmployee = context.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.LastName).Is(employee.LastName);
+        Check.That(retrievedEmployee.LastName).Is("Poelvoorde");
     }
     
     [Fact]
@@ -98,7 +98,7 @@ public class EmployeeCost5Tests
     [Fact]
     public void Not_everyone_has_a_cell_phone_plan()
     {
-        var employee = AnEmployee().Build();
+        var employee = AnEmployee().WithoutCellPhonePlan().Build();
         var app = AnApp().With(employee).Build();
 
         var retrievedEmployee = app.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
