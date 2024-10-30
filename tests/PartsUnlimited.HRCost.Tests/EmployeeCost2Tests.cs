@@ -18,7 +18,7 @@ public class EmployeeCost2Tests
         
         var retrievedEmployee = controller.Edit(employee.Id).To<EmployeeViewModel>();
 
-        Check.That(retrievedEmployee.LastName).Is(employee.LastName);
+        Check.That(retrievedEmployee.LastName).Is("Poelvoorde");
     }
     
     [Fact]

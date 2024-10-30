@@ -4,7 +4,6 @@ using PartsUnlimited.HRCost.Domain.Entities;
 using PartsUnlimited.HRCost.Infrastructure.Repositories;
 using PartsUnlimited.HRCost.Tests;
 using PartsUnlimited.HRCost.Web;
-using static PartsUnlimited.HRCost.Tests.EmployeeBuilder;
 
 namespace PartsUnlimited.HRCost.IntegrationTests;
 
