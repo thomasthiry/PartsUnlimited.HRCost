@@ -18,7 +18,7 @@ public class EmployeeCostIntegrationTests : IClassFixture<DatabaseFixture>
     public void The_details_of_an_employee_can_be_viewed()
     {
         var employee = AnEmployee().WithLastName("Poelvoorde").Build();
-        var context = App.With(employee).Build();
+        var context = App.With(employee).Build(); // Recreate all data for every test
         
         var retrievedEmployee = context.EmployeeController.Edit(employee.Id).To<EmployeeViewModel>();
 
